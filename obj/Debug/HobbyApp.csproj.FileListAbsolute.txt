@@ -1,0 +1,8 @@
+C:\Users\Wiz\Desktop\IGME 201\HobbyApp\bin\Debug\HobbyApp.exe.config
+C:\Users\Wiz\Desktop\IGME 201\HobbyApp\bin\Debug\HobbyApp.exe
+C:\Users\Wiz\Desktop\IGME 201\HobbyApp\bin\Debug\HobbyApp.pdb
+C:\Users\Wiz\Desktop\IGME 201\HobbyApp\obj\Debug\HobbyApp.csproj.AssemblyReference.cache
+C:\Users\Wiz\Desktop\IGME 201\HobbyApp\obj\Debug\HobbyApp.csproj.SuggestedBindingRedirects.cache
+C:\Users\Wiz\Desktop\IGME 201\HobbyApp\obj\Debug\HobbyApp.csproj.CoreCompileInputs.cache
+C:\Users\Wiz\Desktop\IGME 201\HobbyApp\obj\Debug\HobbyApp.exe
+C:\Users\Wiz\Desktop\IGME 201\HobbyApp\obj\Debug\HobbyApp.pdb
