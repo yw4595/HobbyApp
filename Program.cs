@@ -1,129 +1,119 @@
 using System;
 
-namespace HikingApp
+namespace HobbyApp
 {
     // Author: Yanzhi Wang
-    // Purpose: Base class for hiking
+    // Purpose: Represents a hobby activity
     // Restrictions: None
-    public abstract class Hiking
+    public abstract class Hobby
     {
-    }
+        public string Name { get; set; }
+        public int AgeRequirement { get; set; }
 
-    // Author: Yanzhi Wang
-    // Purpose: Base class for hiking equipment
-    // Restrictions: None
-    public abstract class Equipment
-    {
-        private string name;
-        private double weight;
-        private string color;
+        // Purpose: Abstract method for describing the hobby
+        // Restrictions: None
+        public abstract void Describe();
 
-        public abstract void Use();
-    }
-
-    // Author: Yanzhi Wang
-    // Purpose: Class representing a hiking trail
-    // Restrictions: None
-    public class Trail
-    {
-        private string name;
-        private double distance;
-        private double elevationGain;
-        private int difficultyLevel;
-
-        public double CalculateTime()
+        // Purpose: Virtual method for demonstrating the hobby
+        // Restrictions: None
+        public virtual void DoHobby()
         {
-            // Calculation logic goes here
-            return 0.0;
+            Console.WriteLine("Doing the hobby!");
         }
     }
 
     // Author: Yanzhi Wang
-    // Purpose: Class representing a camping site
+    // Purpose: Represents a sports hobby activity
     // Restrictions: None
-    public class Campsite
+    public class SportsHobby : Hobby, IOutdoorHobby
     {
-        private string name;
-        private string location;
-        private int capacity;
-        private bool availability;
+        public bool RequiresTeam { get; set; }
 
-        public void Reserve()
+        // Purpose: Method for describing the sports hobby
+        // Restrictions: None
+        public override void Describe()
         {
-            // Reservation logic goes here
+            Console.WriteLine("This is a sports hobby!");
+        }
+
+        // Purpose: Method for playing the sports hobby
+        // Restrictions: None
+        public void Play()
+        {
+            Console.WriteLine("Playing the sports hobby!");
         }
     }
 
     // Author: Yanzhi Wang
-    // Purpose: Interface for trail guide
+    // Purpose: Represents a music hobby activity
     // Restrictions: None
-    public interface ITrailGuide
+    public class MusicHobby : Hobby, IIndoorHobby
     {
-        string GetDirections();
-    }
+        public string Genre { get; set; }
 
-    // Author: Yanzhi Wang
-    // Purpose: Interface for camping
-    // Restrictions: None
-    public interface ICamping
-    {
-        void Reserve();
-    }
-
-    // Author: Yanzhi Wang
-    // Purpose: Class representing a trail guide
-    // Restrictions: None
-    public class TrailGuide : ITrailGuide
-    {
-        public string GetDirections()
+        // Purpose: Method for describing the music hobby
+        // Restrictions: None
+        public override void Describe()
         {
-            // Directions logic goes here
-            return "Turn left at the next junction";
+            Console.WriteLine("This is a music hobby!");
+        }
+
+        // Purpose: Method for playing the music hobby
+        // Restrictions: None
+        public void Play()
+        {
+            Console.WriteLine("Playing the music hobby!");
         }
     }
 
     // Author: Yanzhi Wang
-    // Purpose: Class representing camping
+    // Purpose: Represents an indoor hobby activity
     // Restrictions: None
-    public class Camping : ICamping
+    public interface IIndoorHobby
     {
-        public void Reserve()
-        {
-            // Reservation logic goes here
-        }
+        void Play();
+    }
+
+    // Author: Yanzhi Wang
+    // Purpose: Represents an outdoor hobby activity
+    // Restrictions: None
+    public interface IOutdoorHobby
+    {
+        bool RequiresTeam { get; set; }
+        void Play();
     }
 
     class Program
     {
-        static void Main(string[] args)
-        {
-            // Create objects
-            TrailGuide trailGuide = new TrailGuide();
-            Camping camping = new Camping();
-
-            // Call MyMethod with each object
-            MyMethod(trailGuide);
-            MyMethod(camping);
-
-            Console.ReadKey();
-        }
-
-        // Author: Yanzhi Wang
-        // Purpose: Demonstrates polymorphism by calling supported methods based on object type
+        // Purpose: Entry point of the application
         // Restrictions: None
-        static void MyMethod(object obj)
+        static void Main()
         {
-            if (obj is ITrailGuide)
+            SportsHobby sportsHobby = new SportsHobby
             {
-                ITrailGuide trailGuide = (ITrailGuide)obj;
-                Console.WriteLine(trailGuide.GetDirections());
-            }
+                Name = "Basketball",
+                AgeRequirement = 10,
+                RequiresTeam = true
+            };
 
-            if (obj is ICamping)
+            MusicHobby musicHobby = new MusicHobby
             {
-                ICamping camping = (ICamping)obj;
-                camping.Reserve();
-            }
+                Name = "Guitar",
+                AgeRequirement = 12,
+                Genre = "Rock"
+            };
+
+            // Call the Describe() method on both hobbies
+            sportsHobby.Describe();
+            musicHobby.Describe();
+
+            // Call the Play() method using the IIndoorHobby interface
+            IIndoorHobby indoorHobby = musicHobby;
+            indoorHobby.Play();
+
+            // Call the Play() method using the IOutdoorHobby interface
+            IOutdoorHobby outdoorHobby = sportsHobby;
+            outdoorHobby.Play();
         }
     }
 }
